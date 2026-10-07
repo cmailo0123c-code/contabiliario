@@ -158,6 +158,46 @@
 		}, { threshold: 0.3 });
 		io.observe(el);
 	});
+
+	/* Cómo funciona: resalta solo el paso activo según el scroll */
+	$$('[data-ctb-steps]').forEach(function (wrap) {
+		var steps = $$('.ctb-step', wrap);
+		if (!steps.length) return;
+		var current = -1, ticking = false;
+		function update() {
+			ticking = false;
+			var vh = window.innerHeight, idx;
+			var stacked = steps.length > 1 && steps[1].offsetTop > steps[0].offsetTop + 10;
+			if (stacked) {
+				var best = Infinity;
+				steps.forEach(function (st, i) {
+					var r = st.getBoundingClientRect();
+					var d = Math.abs(r.top + r.height / 2 - vh * 0.5);
+					if (d < best) { best = d; idx = i; }
+				});
+			} else {
+				var r = wrap.getBoundingClientRect();
+				var p = (vh * 0.8 - r.top) / (r.height + vh * 0.4);
+				idx = Math.max(0, Math.min(steps.length - 1, Math.floor(p * steps.length)));
+			}
+			if (idx !== current) {
+				current = idx;
+				steps.forEach(function (st, i) { st.classList.toggle('is-current', i === idx); });
+			}
+		}
+		window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+		window.addEventListener('resize', update);
+		update();
+	});
+
+	/* Situaciones: marca la tarjeta elegida */
+	document.addEventListener('click', function (e) {
+		var sit = e.target.closest && e.target.closest('.ctb-sit:not(.ctb-sit--featured)');
+		if (!sit) return;
+		$$('.ctb-sit.is-selected').forEach(function (s) { if (s !== sit) s.classList.remove('is-selected'); });
+		sit.classList.add('is-selected');
+	});
+
 	var parallax = $$('[data-ctb-parallax]');
 	if (parallax.length && !reduceMotion) {
 		var pTick = false;
@@ -701,7 +741,7 @@
 					if (r.ok && r.data.success !== false) {
 						var name = wz.elements.nombre.value.trim().split(/\s+/)[0];
 						var digits = wz.elements.telefono.value.replace(/\D/g, '');
-						$('[data-ctb-success-title]').textContent = '¡Listo, ' + name + '!';
+						$('[data-ctb-success-title]').textContent = name ? 'Recibimos tu solicitud, ' + name + '.' : 'Recibimos tu solicitud';
 						$('[data-ctb-success-dl]').innerHTML = row('Preferencia', radio('preferencia')) + row('Número', '•••• ' + digits.slice(-4));
 						wz.hidden = true;
 						success.hidden = false;
