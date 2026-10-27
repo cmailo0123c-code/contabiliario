@@ -713,7 +713,7 @@
 		};
 		var saveDraft = function () {
 			var f = {};
-			['nombre', 'telefono', 'correo', 'negocio', 'mensaje'].forEach(function (k) { f[k] = wz.elements[k].value; });
+			['nombre', 'telefono', 'correo', 'mensaje'].forEach(function (k) { f[k] = wz.elements[k].value; });
 			var p = wz.querySelector('input[name="preferencia"]:checked');
 			var h = wz.querySelector('input[name="horario"]:checked');
 			f.preferencia = p ? p.value : '';
@@ -767,8 +767,7 @@
 				row('Contacto', contacto) +
 				row('Nombre', wz.elements.nombre.value.trim()) +
 				row('Teléfono', wz.elements.telefono.value.trim()) +
-				row('Correo', wz.elements.correo.value.trim()) +
-				row('Negocio', wz.elements.negocio.value.trim());
+				row('Correo', wz.elements.correo.value.trim());
 			alertBox.hidden = true;
 		};
 
@@ -860,7 +859,7 @@
 			},
 			correo: function () {
 				var v = wz.elements.correo.value.trim();
-				if (!v) return 'Necesitamos tu correo para enviarte la información.';
+				if (!v) return '';
 				return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Revisa tu correo, parece que falta algo.';
 			},
 			consentimiento: function () { return wz.elements.consentimiento.checked ? '' : 'Necesitamos tu autorización para poder contactarte.'; }
