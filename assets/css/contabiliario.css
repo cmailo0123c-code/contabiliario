@@ -1858,3 +1858,13 @@ html.ctb-html::-webkit-scrollbar-track { background: #FAF9F7; }
 .ctb-ol-steps li .ctb-h3 { margin: .3rem 0 .4rem; }
 .ctb-ol-steps li p { margin: 0; color: var(--ctb-muted); }
 .ctb-ol-steps .ctb-step__kicker { margin: 0; }
+
+/* ---------- 23 AJUSTES DE LEGIBILIDAD (menú y títulos nuevos) ---------- */
+.ctb-nav__link { white-space: nowrap; }
+@media (min-width: 1024px) and (max-width: 1365px) {
+	.ctb-nav__list { gap: 0; }
+	.ctb-nav__link { padding-inline: .5rem; font-size: .85rem; }
+}
+.ctb-page-hero__title { max-width: 30ch; text-wrap: balance; }
+.ctb-prose > * { max-width: 70ch; margin-left: 0; margin-right: auto; }
+.ctb-container.ctb-prose { max-width: 1200px; }
