@@ -1879,3 +1879,11 @@ html.ctb-html::-webkit-scrollbar-track { background: #FAF9F7; }
 .ctb-section--tight { padding-top: clamp(2.5rem, 5vw, 4rem); }
 .ctb-page-hero__title { max-width: 34ch; }
 .ctb-page-hero { padding-top: calc(var(--ctb-header-h) + clamp(2rem, 4vw, 3rem)); }
+
+/* ---------- 25 CUERPO EN TARJETAS (27 BIS) ---------- */
+@media (min-width: 900px) { .ctb-page-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ctb-prose-card { padding: clamp(1.4rem, 2.5vw, 2rem); }
+.ctb-prose-card p { color: var(--ctb-text); line-height: 1.65; margin: 0 0 1rem; }
+.ctb-prose-card p:last-child { margin-bottom: 0; }
+.ctb-prose-card .ctb-h3 { margin: 0 0 .75rem; }
+.ctb-prose-card .ctb-h3 + p { margin-top: 0; }
