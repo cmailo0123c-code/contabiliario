@@ -164,6 +164,30 @@
 		return api;
 	})();
 
+	/* ================= 00b TESTIMONIOS REALES =================
+	 * Datos en <script id="ctb-testimonios"> (JSON): [{ "nombre", "perfil", "antes", "cita", "despues" }].
+	 * Lista vacía = la sección queda oculta. Solo casos reales y autorizados por el cliente. */
+	run('testimonios', function () {
+		var box = $('[data-ctb-testimonios]');
+		var list = [];
+		try { list = JSON.parse(($('#ctb-testimonios') || {}).textContent || '[]'); } catch (e) { list = []; }
+		if (!box || !Array.isArray(list) || !list.length) return;
+		var esc = function (v) { return String(v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+		var mark = '<svg class="ctb-tcard__mark" viewBox="0 0 32 24" width="28" height="21" aria-hidden="true"><path d="M0 24V13.7C0 5.8 4.3 1.2 12.2 0l1.3 3.3C9 4.6 7 7.4 6.8 11.2H12V24H0Zm18.5 0V13.7C18.5 5.8 22.8 1.2 30.7 0L32 3.3c-4.5 1.3-6.5 4.1-6.7 7.9h5.2V24h-12Z"/></svg>';
+		var html = list.map(function (t) {
+			var ini = String(t.nombre || '').split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
+			return '<figure class="ctb-tcard ctb-animate ctb-fade-up">' + mark +
+				(t.antes ? '<p class="ctb-tcard__problem"><span>Antes</span>' + esc(t.antes) + '</p>' : '') +
+				'<blockquote class="ctb-tcard__quote"><p>“' + esc(t.cita || '') + '”</p></blockquote>' +
+				(t.despues ? '<p class="ctb-tcard__result">' + esc(t.despues) + '</p>' : '') +
+				'<figcaption class="ctb-tcard__author"><span class="ctb-avatar" aria-hidden="true">' + esc(ini) + '</span>' +
+				'<span><strong>' + esc(t.nombre || '') + '</strong><span>' + esc(t.perfil || '') + '</span></span></figcaption></figure>';
+		}).join('');
+		box.innerHTML = html;
+		var section = box.closest('section');
+		if (section) section.hidden = false;
+	});
+
 	run('animaciones', function () { Motion.initReveal(); });
 
 	/* ================= 01 UTILIDADES Y ANALÍTICA ================= */
@@ -713,7 +737,7 @@
 		};
 		var saveDraft = function () {
 			var f = {};
-			['nombre', 'telefono', 'correo', 'negocio', 'mensaje'].forEach(function (k) { f[k] = wz.elements[k].value; });
+			['nombre', 'telefono', 'correo', 'mensaje'].forEach(function (k) { f[k] = wz.elements[k].value; });
 			var p = wz.querySelector('input[name="preferencia"]:checked');
 			var h = wz.querySelector('input[name="horario"]:checked');
 			f.preferencia = p ? p.value : '';
@@ -767,8 +791,7 @@
 				row('Contacto', contacto) +
 				row('Nombre', wz.elements.nombre.value.trim()) +
 				row('Teléfono', wz.elements.telefono.value.trim()) +
-				row('Correo', wz.elements.correo.value.trim()) +
-				row('Negocio', wz.elements.negocio.value.trim());
+				row('Correo', wz.elements.correo.value.trim());
 			alertBox.hidden = true;
 		};
 
@@ -860,7 +883,7 @@
 			},
 			correo: function () {
 				var v = wz.elements.correo.value.trim();
-				if (!v) return 'Necesitamos tu correo para enviarte la información.';
+				if (!v) return '';
 				return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Revisa tu correo, parece que falta algo.';
 			},
 			consentimiento: function () { return wz.elements.consentimiento.checked ? '' : 'Necesitamos tu autorización para poder contactarte.'; }

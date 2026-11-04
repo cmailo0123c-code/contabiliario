@@ -25,7 +25,7 @@
 	--ctb-background: #FAF9F7;
 	--ctb-text: #241F26;
 	--ctb-muted: #6F6773;
-	--ctb-placeholder: #938A97;
+	--ctb-placeholder: #776D7C;
 	--ctb-border-soft: rgba(55, 27, 70, 0.08);
 	--ctb-border: rgba(55, 27, 70, 0.12);
 	--ctb-border-strong: rgba(55, 27, 70, 0.20);
@@ -1825,3 +1825,65 @@ html.ctb-html::-webkit-scrollbar-track { background: #FAF9F7; }
 	/* Acordeón: abre sin animar la altura; el texto aparece con fade */
 	.ctb-js-enabled .ctb-acc__panel, .ctb-js-enabled .ctb-acc.ctb-is-open .ctb-acc__panel { transition-duration: 0s; transition-delay: 0s; }
 }
+
+/* ---------- 22 SECCIONES Y PÁGINAS NUEVAS (27 BIS, servicios, quiénes somos) ---------- */
+.ctb-step__text { margin: .45rem 0 0; color: var(--ctb-muted); font-size: .95rem; line-height: 1.55; max-width: 46ch; }
+.ctb-steps--4 .ctb-step__text { max-width: 260px; }
+
+.ctb-team { background: var(--ctb-beige-light); }
+.ctb-team__grid { display: grid; gap: 1.25rem; max-width: 880px; margin-inline: auto; }
+@media (min-width: 760px) { .ctb-team__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ctb-team__card { background: var(--ctb-white); border: 1px solid var(--ctb-border); border-radius: var(--ctb-radius); padding: 1.6rem; text-align: center; box-shadow: var(--ctb-shadow-sm); }
+.ctb-team__photo { aspect-ratio: 4 / 5; max-width: 240px; margin: 0 auto 1.1rem; border-radius: var(--ctb-radius-sm); border: 1.5px dashed var(--ctb-border-strong); background: var(--ctb-purple-soft); color: var(--ctb-muted); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: .9rem; }
+.ctb-team__name { font-family: var(--ctb-serif); font-size: 1.3rem; color: var(--ctb-purple); margin: 0 0 .2rem; }
+.ctb-team__role { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ctb-muted); margin: 0 0 .7rem; }
+.ctb-team__text { margin: 0; color: var(--ctb-muted); }
+
+.ctb-page-hero { background: var(--ctb-beige-light); border-bottom: 1px solid var(--ctb-border); padding-block: clamp(3.5rem, 8vw, 6rem) clamp(2.5rem, 5vw, 4rem); }
+.ctb-page-hero__title { font-family: var(--ctb-serif); font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.12; color: var(--ctb-purple); margin: .5rem 0 1rem; max-width: 22ch; }
+.ctb-page-hero__lead { font-size: 1.05rem; color: var(--ctb-muted); max-width: 62ch; margin: 0; }
+.ctb-page-hero__cta { margin-top: 1.75rem; }
+.ctb-prose { max-width: 70ch; }
+.ctb-prose p { color: var(--ctb-text); line-height: 1.65; margin: 0 0 1rem; }
+.ctb-prose .ctb-h3 { margin: 2rem 0 .6rem; }
+.ctb-page-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 760px) { .ctb-page-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ctb-page-grid .ctb-card p { color: var(--ctb-muted); margin: .4rem 0 0; }
+.ctb-page-list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .5rem; }
+.ctb-page-list li { position: relative; padding-left: 1.4rem; color: var(--ctb-text); }
+.ctb-page-list li::before { content: ""; position: absolute; left: 0; top: .55em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--ctb-purple); }
+.ctb-ol-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; counter-reset: paso; }
+@media (min-width: 760px) { .ctb-ol-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ctb-ol-steps li { background: var(--ctb-white); border: 1px solid var(--ctb-border); border-radius: var(--ctb-radius); padding: 1.4rem; }
+.ctb-ol-steps li .ctb-h3 { margin: .3rem 0 .4rem; }
+.ctb-ol-steps li p { margin: 0; color: var(--ctb-muted); }
+.ctb-ol-steps .ctb-step__kicker { margin: 0; }
+
+/* ---------- 23 AJUSTES DE LEGIBILIDAD (menú y títulos nuevos) ---------- */
+.ctb-nav__link { white-space: nowrap; }
+@media (min-width: 1024px) and (max-width: 1365px) {
+	.ctb-nav__list { gap: 0; }
+	.ctb-nav__link { padding-inline: .5rem; font-size: .85rem; }
+}
+.ctb-page-hero__title { max-width: 30ch; text-wrap: balance; }
+.ctb-prose > * { max-width: 70ch; margin-left: 0; margin-right: auto; }
+.ctb-container.ctb-prose { max-width: 1200px; }
+
+/* ---------- 24 ENCABEZADO DE PÁGINA EN DOS COLUMNAS ---------- */
+.ctb-page-hero__grid { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 900px) { .ctb-page-hero__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); } }
+.ctb-callout { background: var(--ctb-white); border: 1px solid var(--ctb-border); border-radius: var(--ctb-radius); padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--ctb-shadow); }
+.ctb-callout .ctb-eyebrow { margin: 0 0 .6rem; }
+.ctb-callout__q { font-family: var(--ctb-serif); font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.25; color: var(--ctb-purple); margin: 0 0 .9rem; text-wrap: balance; }
+.ctb-callout p:not(.ctb-eyebrow) { margin: 0; color: var(--ctb-muted); line-height: 1.6; }
+.ctb-section--tight { padding-top: clamp(2.5rem, 5vw, 4rem); }
+.ctb-page-hero__title { max-width: 34ch; }
+.ctb-page-hero { padding-top: calc(var(--ctb-header-h) + clamp(2rem, 4vw, 3rem)); }
+
+/* ---------- 25 CUERPO EN TARJETAS (27 BIS) ---------- */
+@media (min-width: 900px) { .ctb-page-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ctb-prose-card { padding: clamp(1.4rem, 2.5vw, 2rem); }
+.ctb-prose-card p { color: var(--ctb-text); line-height: 1.65; margin: 0 0 1rem; }
+.ctb-prose-card p:last-child { margin-bottom: 0; }
+.ctb-prose-card .ctb-h3 { margin: 0 0 .75rem; }
+.ctb-prose-card .ctb-h3 + p { margin-top: 0; }
