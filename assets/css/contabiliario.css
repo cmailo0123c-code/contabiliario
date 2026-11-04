@@ -1868,3 +1868,14 @@ html.ctb-html::-webkit-scrollbar-track { background: #FAF9F7; }
 .ctb-page-hero__title { max-width: 30ch; text-wrap: balance; }
 .ctb-prose > * { max-width: 70ch; margin-left: 0; margin-right: auto; }
 .ctb-container.ctb-prose { max-width: 1200px; }
+
+/* ---------- 24 ENCABEZADO DE PÁGINA EN DOS COLUMNAS ---------- */
+.ctb-page-hero__grid { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 900px) { .ctb-page-hero__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); } }
+.ctb-callout { background: var(--ctb-white); border: 1px solid var(--ctb-border); border-radius: var(--ctb-radius); padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--ctb-shadow); }
+.ctb-callout .ctb-eyebrow { margin: 0 0 .6rem; }
+.ctb-callout__q { font-family: var(--ctb-serif); font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.25; color: var(--ctb-purple); margin: 0 0 .9rem; text-wrap: balance; }
+.ctb-callout p:not(.ctb-eyebrow) { margin: 0; color: var(--ctb-muted); line-height: 1.6; }
+.ctb-section--tight { padding-top: clamp(2.5rem, 5vw, 4rem); }
+.ctb-page-hero__title { max-width: 34ch; }
+.ctb-page-hero { padding-top: calc(var(--ctb-header-h) + clamp(2rem, 4vw, 3rem)); }
